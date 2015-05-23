@@ -3,6 +3,14 @@
     <style name="MyTheme" parent="MyTheme.Base">
 
     </style>
+    <style name="FondoBarra">
+        <item name="android:background">#37474F</item>
+    </style>
+
+    <style name="TemaPersonalizado" parent="android:Theme">
+        <item name="android:windowTitleSize">40dp</item>
+        <item name="android:windowTitleBackgroundStyle">@style/FondoBarra</item>
+    </style>
 
     <!-- Base application theme. -->
     <style name="MyTheme.Base" parent="Theme.AppCompat.Light.DarkActionBar">

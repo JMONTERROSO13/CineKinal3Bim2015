@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello_world">Hola!</string>
+    <string name="action_settings">Ajustes</string>
+    <string name="login">Login</string>
+    <string name="register">Registro</string>
+    <string name="user">Usuario</string>
+    <string name="password">Contraseña</string>
+    <string name="titleTool">Peliculas Kinal</string>
+
+</resources>
