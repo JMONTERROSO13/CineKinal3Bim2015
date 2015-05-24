@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -23,19 +24,21 @@ import android.widget.Toast;
 public class MainActivity extends ActionBarActivity {
 
     private Toolbar myToolBar;
-
+    private Button bttnAjustes;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         myToolBar = (Toolbar)findViewById(R.id.toolbar);
+        bttnAjustes = (Button)findViewById(R.id.loginOtp);
 
         setSupportActionBar(myToolBar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
     }
 
+    
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
