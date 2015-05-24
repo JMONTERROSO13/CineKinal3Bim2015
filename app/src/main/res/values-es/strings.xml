@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">Peliculas</string>
 
     <string name="hello_world">Hola!</string>
     <string name="action_settings">Ajustes</string>
@@ -8,5 +9,11 @@
     <string name="user">Nombre de Usuario</string>
     <string name="password">Contraseña</string>
     <string name="titleTool">Peliculas Kinal</string>
+    <string name="title_activity_titular">Descripciones</string>
+    <string name="title_activity_login">Iniciar Sesion</string>
+    <string name="loggin">Ingresar</string>
+    <string name="main" >Menu</string>
+    <string name="welcome">Bienvenido a nuestra aplicacion</string>
+    <string name="errorLogin">Error Al Iniciar Sesion</string>
 
 </resources>

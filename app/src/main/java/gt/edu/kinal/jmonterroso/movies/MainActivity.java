@@ -23,6 +23,8 @@ import android.widget.Toast;
 
 public class MainActivity extends ActionBarActivity {
 
+
+
     private Toolbar myToolBar;
     private Button bttnAjustes;
     @Override
@@ -38,7 +40,7 @@ public class MainActivity extends ActionBarActivity {
 
     }
 
-    
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

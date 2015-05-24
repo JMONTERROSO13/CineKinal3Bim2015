@@ -10,5 +10,11 @@
     <string name="titleTool">Movies Kinal</string>
     <string name="title_activity_titular">TitularActivity</string>
     <string name="title_activity_login">Login</string>
+    <string name="loggin">Loggin</string>
+    <string name="main">main</string>
+    <string name="title_activity_register">Register</string>
+    <string name="welcome">Welcome to our Application</string>
+    <string name="errorLogin">Error login</string>
+
 
 </resources>
