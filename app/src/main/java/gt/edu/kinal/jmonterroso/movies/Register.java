@@ -1,14 +1,21 @@
 package gt.edu.kinal.jmonterroso.movies;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 
 public class Register extends ActionBarActivity {
+
     private Toolbar myToolBar;
+    private Button btnlog;
+    private Button btnregit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,6 +23,24 @@ public class Register extends ActionBarActivity {
         setContentView(R.layout.activity_register);
 
         myToolBar = (Toolbar)findViewById(R.id.toolbar);
+        btnlog = (Button)findViewById(R.id.logins);
+        btnregit = (Button)findViewById(R.id.regit);
+
+        btnlog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Register.this, LoginActivity.class);
+                startActivity(intent);
+                Toast.makeText(getApplicationContext(), "Accediendo al Login", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        btnregit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(), "Usuario Registrado", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         setSupportActionBar(myToolBar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -38,7 +63,11 @@ public class Register extends ActionBarActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.loginReg) {
+            Intent intent = new Intent(Register.this, LoginActivity.class);
+            startActivity(intent);
+            Toast.makeText(getApplicationContext(), "Accediendo al Login", Toast.LENGTH_SHORT).show();
+            finish();
             return true;
         }
 

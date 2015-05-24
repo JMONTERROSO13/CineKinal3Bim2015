@@ -18,6 +18,7 @@ public class LoginActivity extends ActionBarActivity {
 
     private Toolbar myToolBar;
     private Button btnLogin;
+    private Button btnRegis;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +27,7 @@ public class LoginActivity extends ActionBarActivity {
 
         myToolBar = (Toolbar)findViewById(R.id.toolbar);
         btnLogin = (Button)findViewById(R.id.logins);
+        btnRegis = (Button)findViewById(R.id.registers);
 
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -40,6 +42,15 @@ public class LoginActivity extends ActionBarActivity {
                 else {
                     Toast.makeText( getApplicationContext() , "Error al iniciar Sesion", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+
+        btnRegis.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this, Register.class);
+                startActivity(intent);
+                Toast.makeText( getApplicationContext() , "Accediendo al Registro", Toast.LENGTH_SHORT).show();
             }
         });
 
