@@ -16,74 +16,62 @@
 
     <TextView
         android:id="@+id/textLog"
-        android:layout_centerHorizontal="true"
         android:text="@string/loggin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/LayoutToolBar"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:textColor="@color/textColorPrimary"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="150dp"
         android:textSize="25sp"
-        android:layout_alignParentRight="false"
-        android:textStyle="italic"/>
+        android:layout_marginTop="10dp"
+        android:textStyle="bold|italic"
+        android:layout_below="@+id/LayoutToolBar"
+        android:layout_centerHorizontal="true" />
 
     <TextView
+        android:layout_marginLeft="10dp"
         android:id="@+id/user"
-        android:layout_centerHorizontal="true"
         android:text="@string/user"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/LayoutToolBar"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:textColor="@color/textColorPrimary"
-        android:layout_marginTop="75dp"
-        android:layout_marginLeft="20dp"
-        android:textSize="20sp"
-        android:layout_alignParentRight="false"
-        android:textStyle="italic"/>
+        android:textSize="25sp"
+        android:layout_marginTop="20dp"
+        android:textStyle="italic"
+        android:layout_below="@+id/textLog" />
 
     <EditText
         android:id="@+id/userText"
-        android:layout_below="@+id/user"
-        android:layout_width="300dp"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
+        android:layout_width="400dp"
         android:drawableLeft="@drawable/ic_user_name"
         android:textSize="20sp"
         android:layout_height="wrap_content"
-        android:textColor="@color/textColorPrimary"/>
+        android:textColor="@color/textColorPrimary"
+        android:layout_alignTop="@+id/user"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <TextView
         android:id="@+id/pass"
-        android:layout_centerHorizontal="true"
         android:text="@string/password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/userText"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:textColor="@color/textColorPrimary"
-        android:layout_marginTop="50dp"
-        android:layout_marginLeft="20dp"
-        android:textSize="20sp"
-        android:layout_alignParentRight="false"
-        android:textStyle="italic"/>
+        android:textSize="25sp"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="10dp"
+        android:textStyle="italic"
+        android:layout_below="@+id/userText"/>
 
     <EditText
         android:id="@+id/passText"
-        android:layout_below="@+id/pass"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
         android:textSize="20sp"
         android:drawableLeft="@drawable/ic_pass_user"
-        android:layout_width="300dp"
+        android:layout_width="400dp"
         android:layout_height="wrap_content"
         android:textColor="@color/textColorPrimary"
-        android:password="true" />
+        android:password="true"
+        android:layout_alignTop="@+id/pass"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -93,19 +81,21 @@
         android:background="#ffffff"
         android:textSize="15sp"
         android:textColor="@color/background"
-        android:layout_below="@+id/passText"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="51dp"/>
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="200dp"
+        android:layout_marginBottom="30dp"/>
 
-
-    <TextView android:id="@+id/toRegister"
-        android:layout_width="fill_parent"
+    <Button
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dip"
-        android:layout_marginBottom="40dip"
         android:text="@string/register"
-        android:gravity="center"
-        android:textSize="20dip"
-        android:textColor="#0b84aa"/>
+        android:id="@+id/registers"
+        android:background="#ffffff"
+        android:textSize="15sp"
+        android:textColor="@color/background"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="350dp"
+        android:layout_marginBottom="30dp"
+        />
 
 </RelativeLayout>
