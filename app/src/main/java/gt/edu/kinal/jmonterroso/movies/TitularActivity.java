@@ -14,7 +14,7 @@ import android.widget.TextView;
 public class TitularActivity extends ActionBarActivity {
 
     private Toolbar mToolbar;
-    private TextView tvTitulo;
+    private TextView tvPelicula;
     private TextView tvDescripcion;
 
     @Override
@@ -41,12 +41,12 @@ public class TitularActivity extends ActionBarActivity {
         spec.setIndicator("Descripcion", res.getDrawable(android.R.drawable.ic_dialog_map));
         tabs.addTab(spec);
 
-        tvTitulo = (TextView)findViewById(R.id.tvTituloTitular);
+        tvPelicula = (TextView)findViewById(R.id.tvPelicula);
         tvDescripcion = (TextView)findViewById(R.id.tvDescripcion);
 
         Bundle extras = getIntent().getExtras();
 
-        tvTitulo.setText(extras.getString("Titulo"));
+        tvPelicula.setText(extras.getString("Titulo"));
         tvDescripcion.setText(extras.getString("Descripcion"));
 
         tabs.setCurrentTab(0);

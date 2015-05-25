@@ -20,6 +20,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import gt.edu.kinal.jmonterroso.movies.models.Titular;
+
 
 public class MainActivity extends ActionBarActivity {
 
@@ -31,6 +33,19 @@ public class MainActivity extends ActionBarActivity {
     final String[] datos = new String[]{"Pelicula 1","Pelicula 2","Pelicula 3","Pelicula 4","Pelicula 5","Pelicula 6","Pelicula 7","Pelicula 8"};
     private Spinner spinners;
     private ListView listMovies;
+
+    private Titular[] datosTitular = new Titular[]{
+            new Titular("Pelicula 1", "Esta es una descripcion de un titular que esta siendo llamado desde el mainactivity, Titular 1"),
+            new Titular("Pelicula 2", "Esta es una descripcion de un titular que esta siendo llamado desde el mainactivity, Titular 2"),
+            new Titular("Pelicula 3", "Esta es una descripcion de un titular que esta siendo llamado desde el mainactivity, Titular 3"),
+            new Titular("Pelicula 4",  "Esta es una descripcion de un titular que esta siendo llamado desde el mainactivity, Titular 4"),
+            new Titular("Pelicula 5", "Esta es una descripcion de un titular que esta siendo llamado desde el mainactivity, Titular 5"),
+            new Titular("Pelicula 6", "Esta es una descripcion de un titular que esta siendo llamado desde el mainactivity, Titular 6"),
+            new Titular("Pelicula 7", "Esta es una descripcion de un titular que esta siendo llamado desde el mainactivity, Titular 7"),
+            new Titular("Pelicula 8", "Esta es una descripcion de un titular que esta siendo llamado desde el mainactivity, Titular 8"),
+            new Titular("Pelicula 9", "Esta es una descripcion de un titular que esta siendo llamado desde el mainactivity, Titular 9"),
+            new Titular("Pelicula 10", "Esta es una descripcion de un titular que esta siendo llamado desde el mainactivity, Titular 10")
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,13 +83,29 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
-        //listView Movies
+        /* listView Movies
         ArrayAdapter<String> arrayList = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, datos);
         listMovies = (ListView)findViewById(R.id.listMovies);
         listMovies.setAdapter(arrayList);
-
+        */
         //ListView Implements with objects
 
+        listMovies = (ListView)findViewById(R.id.listMovies);
+        AdaptadorTitulares adaptadorTitulares = new AdaptadorTitulares(this, datosTitular);
+        listMovies.setAdapter(adaptadorTitulares);
+
+        listMovies.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intentTitular = new Intent(MainActivity.this, TitularActivity.class);
+                Titular titularSeleccionado = (Titular) parent.getItemAtPosition(position);
+                Bundle extras = new Bundle();
+                extras.putString("Titulo", titularSeleccionado.getNameMovie());
+                extras.putString("Descripcion", titularSeleccionado.getDescriptionMovie());
+                intentTitular.putExtras(extras);
+                startActivity(intentTitular);
+            }
+        });
 
     }
 
@@ -99,4 +130,27 @@ public class MainActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    class AdaptadorTitulares extends ArrayAdapter<Titular>{
+        public AdaptadorTitulares(Context context, Titular[] datos){
+            super(context, R.layout.listitem_movie, datos);
+        }
+
+        public View getView(int position, View convertView, ViewGroup parent){
+            LayoutInflater inflater = LayoutInflater.from(getContext());
+            View item = inflater.inflate(R.layout.listitem_movie, null);
+
+            TextView tvPelicula = (TextView)item.findViewById(R.id.txtName);
+            TextView tvDescrption = (TextView)item.findViewById(R.id.txtDescription);
+
+            String tituloPelicula = datosTitular[position].getNameMovie();
+            String descriptionMovie = datosTitular[position].getDescriptionMovie();
+
+            tvPelicula.setText(tituloPelicula);
+            tvDescrption.setText(descriptionMovie);
+
+            return item;
+        }
+    }
+
 }

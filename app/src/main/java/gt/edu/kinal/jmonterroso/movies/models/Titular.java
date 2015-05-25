@@ -7,7 +7,6 @@ public class Titular {
 
     private String nameMovie;
     private String descriptionMovie;
-    private String img;
 
     public String getNameMovie() {
         return nameMovie;
@@ -17,13 +16,8 @@ public class Titular {
         return descriptionMovie;
     }
 
-    public String getImg() {
-        return img;
-    }
-
-    public Titular(String nameMovie, String descriptionMovie, String img) {
+    public Titular(String nameMovie, String descriptionMovie) {
         this.nameMovie = nameMovie;
         this.descriptionMovie = descriptionMovie;
-        this.img = img;
     }
 }
