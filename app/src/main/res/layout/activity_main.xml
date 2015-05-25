@@ -1,7 +1,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" tools:context=".MainActivity"
-    android:background="@color/background" >
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@color/background">
 
     <LinearLayout
         android:id="@+id/LayoutToolBar"
@@ -21,11 +24,38 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/textColorPrimary"
-        android:textSize="25sp"
-        android:textStyle="italic"
+        android:textSize="20sp"
+        android:textStyle="italic|bold"
         android:layout_below="@+id/LayoutToolBar"
         android:layout_centerHorizontal="true" />
 
+    <Spinner
+        android:id="@+id/spin"
+        android:layout_width="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/welcome"
+        android:textAlignment="center"
+        android:background="@color/background"
+        android:layout_height="wrap_content"
+        android:popupBackground="@color/textColorPrimary"
+        android:spinnerMode="dropdown"></Spinner>
 
+    <TextView
+        android:id="@+id/txtSpin"
+        android:text="@string/item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/textColorPrimary"
+        android:textSize="15sp"
+        android:textStyle="italic|bold"
+        android:layout_below="@+id/spin"
+        android:layout_centerHorizontal="true" />
+
+    <ListView
+        android:id="@+id/listMovies"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtSpin"
+        android:layout_centerHorizontal="true"></ListView>
 
 </RelativeLayout>

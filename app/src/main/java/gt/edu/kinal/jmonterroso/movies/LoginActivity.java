@@ -19,6 +19,8 @@ public class LoginActivity extends ActionBarActivity {
     private Toolbar myToolBar;
     private Button btnLogin;
     private Button btnRegis;
+    private EditText userName;
+    private EditText pass_text;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +30,8 @@ public class LoginActivity extends ActionBarActivity {
         myToolBar = (Toolbar)findViewById(R.id.toolbar);
         btnLogin = (Button)findViewById(R.id.logins);
         btnRegis = (Button)findViewById(R.id.registers);
+        userName = (EditText)findViewById(R.id.userText);
+        pass_text = (EditText)findViewById(R.id.passText);
 
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -36,8 +40,12 @@ public class LoginActivity extends ActionBarActivity {
                 String user_name = ((EditText)findViewById(R.id.userText)).getText().toString();
                 String pass_name = ((EditText)findViewById(R.id.passText)).getText().toString();
                 if(user_name.equals("Admin") && pass_name.equals("Admin")){
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                    startActivity(intent);
+                    Bundle b = new Bundle();
+                    b.putString("userName", userName.getText().toString());
+                    b.putString("password", pass_text.getText().toString());
+                    Intent intentLogin = new Intent(LoginActivity.this, MainActivity.class);
+                    intentLogin.putExtras(b);
+                    startActivity(intentLogin);
                 }
                 else {
                     Toast.makeText( getApplicationContext() , "Error al iniciar Sesion", Toast.LENGTH_SHORT).show();

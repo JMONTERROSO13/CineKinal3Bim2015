@@ -2,6 +2,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="gt.edu.kinal.jmonterroso.movies.Register">
-    <item android:id="@+id/loginReg" android:title="@string/login"
-        android:orderInCategory="100" app:showAsAction="never" />
+    <item android:id="@+id/loginReg" android:title="@string/login" android:icon="@drawable/ic_pass_user"
+        android:orderInCategory="100" app:showAsAction="ifRoom|withText" />
 </menu>

@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 
@@ -16,6 +17,7 @@ public class Register extends ActionBarActivity {
     private Toolbar myToolBar;
     private Button btnlog;
     private Button btnregit;
+    private EditText lblName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +27,7 @@ public class Register extends ActionBarActivity {
         myToolBar = (Toolbar)findViewById(R.id.toolbar);
         btnlog = (Button)findViewById(R.id.logins);
         btnregit = (Button)findViewById(R.id.regit);
+        lblName = (EditText)findViewById(R.id.userText);
 
         btnlog.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,7 +41,13 @@ public class Register extends ActionBarActivity {
         btnregit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Bundle b = new Bundle();
+                b.putString("userName", lblName.getText().toString());
+                Intent intentRegit = new Intent(Register.this, MainActivity.class);
+                intentRegit.putExtras(b);
+                startActivity(intentRegit);
                 Toast.makeText(getApplicationContext(), "Usuario Registrado", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Iniciando Sesion", Toast.LENGTH_SHORT).show();
             }
         });
 
