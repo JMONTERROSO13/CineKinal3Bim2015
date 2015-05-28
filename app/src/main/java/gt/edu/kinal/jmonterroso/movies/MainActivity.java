@@ -2,6 +2,7 @@ package gt.edu.kinal.jmonterroso.movies;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.ContextMenu;
@@ -17,6 +18,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,16 +37,16 @@ public class MainActivity extends ActionBarActivity {
     private ListView listMovies;
 
     private Titular[] datosTitular = new Titular[]{
-            new Titular("Pelicula 1", "Esta es una descripcion de un titular que esta siendo llamado desde el mainactivity, Titular 1"),
-            new Titular("Pelicula 2", "Esta es una descripcion de un titular que esta siendo llamado desde el mainactivity, Titular 2"),
-            new Titular("Pelicula 3", "Esta es una descripcion de un titular que esta siendo llamado desde el mainactivity, Titular 3"),
-            new Titular("Pelicula 4",  "Esta es una descripcion de un titular que esta siendo llamado desde el mainactivity, Titular 4"),
-            new Titular("Pelicula 5", "Esta es una descripcion de un titular que esta siendo llamado desde el mainactivity, Titular 5"),
-            new Titular("Pelicula 6", "Esta es una descripcion de un titular que esta siendo llamado desde el mainactivity, Titular 6"),
-            new Titular("Pelicula 7", "Esta es una descripcion de un titular que esta siendo llamado desde el mainactivity, Titular 7"),
-            new Titular("Pelicula 8", "Esta es una descripcion de un titular que esta siendo llamado desde el mainactivity, Titular 8"),
-            new Titular("Pelicula 9", "Esta es una descripcion de un titular que esta siendo llamado desde el mainactivity, Titular 9"),
-            new Titular("Pelicula 10", "Esta es una descripcion de un titular que esta siendo llamado desde el mainactivity, Titular 10")
+            new Titular("El Castillo Vagabundo", "Esta es una descripcion de un titular que esta siendo llamado desde el mainactivity, Titular 1"),
+            new Titular("Carrie", "Esta es una descripcion de un titular que esta siendo llamado desde el mainactivity, Titular 2"),
+            new Titular("Beautiful Creatures", "Esta es una descripcion de un titular que esta siendo llamado desde el mainactivity, Titular 3"),
+            new Titular("Drgaon Ball Z: La resuccion de Freezer",  "Esta es una descripcion de un titular que esta siendo llamado desde el mainactivity, Titular 4"),
+            new Titular("Send to Chihiro", "Esta es una descripcion de un titular que esta siendo llamado desde el mainactivity, Titular 5"),
+            new Titular("Pokemon 2000", "Esta es una descripcion de un titular que esta siendo llamado desde el mainactivity, Titular 6"),
+            new Titular("Big Hero", "Esta es una descripcion de un titular que esta siendo llamado desde el mainactivity, Titular 7"),
+            new Titular("A Single Shot", "Esta es una descripcion de un titular que esta siendo llamado desde el mainactivity, Titular 8"),
+            new Titular("The perks of being a wallflower", "Esta es una descripcion de un titular que esta siendo llamado desde el mainactivity, Titular 9"),
+            new Titular("The Giver", "Esta es una descripcion de un titular que esta siendo llamado desde el mainactivity, Titular 10")
     };
 
     @Override
@@ -106,6 +108,20 @@ public class MainActivity extends ActionBarActivity {
                 startActivity(intentTitular);
             }
         });
+
+        Resources res = getResources();
+        TabHost tabs = (TabHost) findViewById(android.R.id.tabhost);
+        tabs.setup();
+
+        TabHost.TabSpec spec = tabs.newTabSpec("miTab1");
+        spec.setContent(R.id.tab1);
+        spec.setIndicator("Inicio", res.getDrawable(android.R.drawable.ic_btn_speak_now));
+        tabs.addTab(spec);
+
+        spec = tabs.newTabSpec("miTab2");
+        spec.setContent(R.id.tab2);
+        spec.setIndicator("Favoritos", res.getDrawable(android.R.drawable.ic_dialog_map));
+        tabs.addTab(spec);
 
     }
 

@@ -18,44 +18,90 @@
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/welcome"
-        android:text="@string/welcome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/textColorPrimary"
-        android:textSize="20sp"
-        android:textStyle="italic|bold"
-        android:layout_below="@+id/LayoutToolBar"
-        android:layout_centerHorizontal="true" />
-
-    <Spinner
-        android:id="@+id/spin"
-        android:layout_width="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/welcome"
-        android:textAlignment="center"
-        android:background="@color/background"
-        android:layout_height="wrap_content"
-        android:popupBackground="@color/textColorPrimary"
-        android:spinnerMode="dropdown"></Spinner>
-
-    <TextView
-        android:id="@+id/txtSpin"
-        android:text="@string/item"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/textColorPrimary"
-        android:textSize="15sp"
-        android:textStyle="italic|bold"
-        android:layout_below="@+id/spin"
-        android:layout_centerHorizontal="true" />
-
-    <ListView
-        android:id="@+id/listMovies"
+    <TabHost
+        android:id="@android:id/tabhost"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/txtSpin"
-        android:layout_centerHorizontal="true"></ListView>
+        android:background="@color/background"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/LayoutToolbar">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <TabWidget
+            android:id="@android:id/tabs"
+            android:background="@color/background"
+            android:layout_width="match_parent"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark"
+            android:layout_height="wrap_content" />
+
+            <FrameLayout
+                android:id="@android:id/tabcontent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <RelativeLayout
+                    android:id="@+id/tab1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/welcome"
+                        android:text="@string/welcome"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/textColorPrimary"
+                        android:textSize="20sp"
+                        android:textStyle="italic|bold"
+                        android:layout_below="@+id/LayoutToolBar"
+                        android:layout_centerHorizontal="true" />
+
+                    <Spinner
+                        android:id="@+id/spin"
+                        android:layout_width="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_below="@+id/welcome"
+                        android:textAlignment="center"
+                        android:background="@color/background"
+                        android:layout_height="wrap_content"
+                        android:popupBackground="@color/textColorPrimary"
+                        android:spinnerMode="dropdown"></Spinner>
+
+                    <TextView
+                        android:id="@+id/txtSpin"
+                        android:text="@string/item"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/textColorPrimary"
+                        android:textSize="15sp"
+                        android:textStyle="italic|bold"
+                        android:layout_below="@+id/spin"
+                        android:layout_centerHorizontal="true" />
+
+                    <ListView
+                        android:id="@+id/listMovies"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/txtSpin"
+                        android:layout_centerHorizontal="true"></ListView>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/tab2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <ListView
+                        android:id="@+id/listFavorites"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"></ListView>
+
+                </RelativeLayout>
+            </FrameLayout>
+        </LinearLayout>
+    </TabHost>
 
 </RelativeLayout>
