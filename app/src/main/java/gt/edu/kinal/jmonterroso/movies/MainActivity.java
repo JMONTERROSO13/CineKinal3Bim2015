@@ -123,6 +123,8 @@ public class MainActivity extends ActionBarActivity {
         spec.setIndicator("Favoritos", res.getDrawable(android.R.drawable.ic_dialog_map));
         tabs.addTab(spec);
 
+        registerForContextMenu(listMovies);
+
     }
 
     @Override
@@ -130,6 +132,20 @@ public class MainActivity extends ActionBarActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View view, ContextMenu.ContextMenuInfo infoMenu){
+        super.onCreateContextMenu(menu, view, infoMenu);
+        MenuInflater menuInflater = getMenuInflater();
+
+        if(view.getId() == R.id.listMovies){
+            AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)infoMenu;
+            Titular titularMenu = (Titular)listMovies.getAdapter().getItem(info.position);
+            menu.setHeaderTitle(titularMenu.getNameMovie());
+            menuInflater.inflate(R.menu.menu_ctx_movies, menu);
+        }
+
     }
 
     @Override
@@ -145,6 +161,24 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item){
+
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
+
+        switch (item.getItemId()){
+            case R.id.addFav:
+                Toast.makeText(getApplicationContext(), "Agregado a Favoritos", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.viewDetails:
+                Toast.makeText(getApplicationContext(), "Accediendo al detalle", Toast.LENGTH_SHORT).show();
+                return true;
+            default:
+                return super.onContextItemSelected(item);
+        }
+
     }
 
     class AdaptadorTitulares extends ArrayAdapter<Titular>{

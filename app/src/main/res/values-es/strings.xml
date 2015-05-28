@@ -18,4 +18,7 @@
     <string name="phone">Numero de Telefono</string>
     <string name="createReg">Crear Registro</string>
     <string name="item">Elemento Seleccionado</string>
+    <string name="viewDetails">Ver Detalle</string>
+    <string name="addFav">Agregar a Favoritos</string>
+
 </resources>
