@@ -20,5 +20,8 @@
     <string name="item">Elemento Seleccionado</string>
     <string name="viewDetails">Ver Detalle</string>
     <string name="addFav">Agregar a Favoritos</string>
-
+    <string name="peli">Peliculas</string>
+    <string name="favorites">Favorites</string>
+    <string name="hours">Hour</string>
+    <string name="settings">Settings</string>
 </resources>
