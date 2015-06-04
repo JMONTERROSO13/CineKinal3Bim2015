@@ -87,13 +87,13 @@ public class NavigationDrawerAdapter extends RecyclerView.Adapter<NavigationDraw
         return mNavTitles.length + 1;
     }
 
-    private boolean isPosiotionHeader(int position){
+    private boolean isPositionHeader(int position){
         return position == 0;
     }
 
     @Override
     public int getItemViewType(int position){
-        if(isPosiotionHeader(position)){
+        if(isPositionHeader(position)){
             return TYPE_HEADER;
         }
         return TYPE_ITEM;

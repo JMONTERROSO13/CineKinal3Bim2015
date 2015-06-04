@@ -1,5 +1,7 @@
 package gt.edu.kinal.jmonterroso.movies;
 
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -19,6 +21,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TabHost;
 import android.widget.TextView;
@@ -27,7 +30,7 @@ import android.widget.Toast;
 import gt.edu.kinal.jmonterroso.movies.models.Titular;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity implements NavigationDrawerFragment.FragmentDrawerListener {
 
 
 
@@ -59,7 +62,6 @@ public class MainActivity extends ActionBarActivity {
         Bundle userAccount = getIntent().getExtras();
 
         labelWelcome = (TextView)findViewById(R.id.welcome);
-        spinTxt = (TextView)findViewById(R.id.txtSpin);
         myToolBar = (Toolbar)findViewById(R.id.toolbar);
 
         setSupportActionBar(myToolBar);
@@ -68,32 +70,7 @@ public class MainActivity extends ActionBarActivity {
         String name = userAccount.getString("userName");
 
         labelWelcome.setText(labelWelcome.getText()+ " " + name);
-
-        ArrayAdapter<String> arreglo = new ArrayAdapter<String>( this, android.R.layout.simple_spinner_item, datos);
-
-        spinners = (Spinner)findViewById(R.id.spin);
-        arreglo.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinners.setAdapter(arreglo);
-
-        spinners.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                spinTxt.setText("Elemento " + adapterView.getItemAtPosition(i));
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-                spinTxt.setText("Elemento Nulo ");
-            }
-        });
-
-        /* listView Movies
-        ArrayAdapter<String> arrayList = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, datos);
-        listMovies = (ListView)findViewById(R.id.listMovies);
-        listMovies.setAdapter(arrayList);
-        */
-        //ListView Implements with objects
-
+/*
         listMovies = (ListView)findViewById(R.id.listMovies);
         AdaptadorTitulares adaptadorTitulares = new AdaptadorTitulares(this, datosTitular);
         listMovies.setAdapter(adaptadorTitulares);
@@ -111,26 +88,13 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
-        Resources res = getResources();
-        TabHost tabs = (TabHost) findViewById(android.R.id.tabhost);
-        tabs.setup();
-
-        TabHost.TabSpec spec = tabs.newTabSpec("miTab1");
-        spec.setContent(R.id.tab1);
-        spec.setIndicator("Inicio", res.getDrawable(android.R.drawable.ic_btn_speak_now));
-        tabs.addTab(spec);
-
-        spec = tabs.newTabSpec("miTab2");
-        spec.setContent(R.id.tab2);
-        spec.setIndicator("Favoritos", res.getDrawable(android.R.drawable.ic_dialog_map));
-        tabs.addTab(spec);
-
         registerForContextMenu(listMovies);
-
+*/
         //Fragment
         NavigationDrawerFragment drawerFragment = (NavigationDrawerFragment)getSupportFragmentManager().findFragmentById(R.id.navigation_drawer_fragmnet);
 
-        drawerFragment.setUp((DrawerLayout)findViewById(R.id.drawer_layout), myToolBar);
+        drawerFragment.setUp((DrawerLayout)findViewById(R.id.drawer_layout), myToolBar, R.id.navigation_drawer_fragmnet);
+        drawerFragment.setDrawerListener(this);
 
     }
 
@@ -186,6 +150,44 @@ public class MainActivity extends ActionBarActivity {
                 return super.onContextItemSelected(item);
         }
 
+    }
+
+    @Override
+    public void onDrawerItemSelected(View view, int position) {
+        Fragment fragment = null;
+        String title = getString(R.string.app_name);
+
+        switch (position){
+            case 1:
+                fragment =  new SettingFragment();
+                title = getString(R.string.settings);
+                break;
+         /*   case 2:
+                fragment =  new MoviesFragment();
+                title = getString(R.string.peli);
+                break;
+            case 3:
+                fragment =  new FavoritesFragment();
+                title = getString(R.string.favorites);
+                break;
+            case 4:
+                fragment =  new HoursFragment();
+                title = getString(R.string.hours);
+                break;*/
+            default:
+
+            break;
+        }
+
+        if(fragment != null){
+            ((RelativeLayout)findViewById(R.id.ContainerLayout)).removeAllViewsInLayout();
+
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.ContainerLayout, fragment);
+            fragmentTransaction.commit();
+            getSupportActionBar().setTitle(title);
+        }
     }
 
     class AdaptadorTitulares extends ArrayAdapter<Titular>{

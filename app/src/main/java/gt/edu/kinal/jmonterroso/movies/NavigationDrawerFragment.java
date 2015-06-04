@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.support.v7.widget.Toolbar;
 
 import gt.edu.kinal.jmonterroso.movies.adapter.NavigationDrawerAdapter;
+import gt.edu.kinal.jmonterroso.movies.helpers.RecyclerItemClickListener;
 
 
   /**
@@ -23,25 +24,28 @@ public class NavigationDrawerFragment extends Fragment {
       private ActionBarDrawerToggle mDrawerToggle;
       private DrawerLayout mDrawerLayout;
       private Toolbar mToolbar;
+
       private RecyclerView mRecyclerView;
       private RecyclerView.Adapter mAdapter;
       private RecyclerView.LayoutManager mLayoutManager;
+      private FragmentDrawerListener drawerListener;
+      private View containerView;
 
     private int ICONS[] = {R.drawable.ic_setting,R.drawable.ic_movie, R.drawable.ic_favorite, R.drawable.ic_events };
-//    private String TITLES[] = {String.valueOf(R.string.settings), String.valueOf(R.string.peli),String.valueOf(R.string.favorites),String.valueOf(R.string.hours)};
+   // private String TITLES[] = {String.valueOf(R.string.settings), String.valueOf(R.string.peli),String.valueOf(R.string.favorites),String.valueOf(R.string.hours)};
     private String TITLES[] = {"Ajustes","Peliculas","Favoritas","Horarios"};
     private String NAME = "Jorge Monterroso";
     private String EMAIL = "jmonterroso-2013175@kinal.edu.gt";
     private int PROFILE = R.mipmap.ic_launcher;
 
 
-      public NavigationDrawerFragment() {
-        // Required empty public constructor
+    public NavigationDrawerFragment() {
+
     }
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
 
@@ -50,16 +54,26 @@ public class NavigationDrawerFragment extends Fragment {
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
         mAdapter = new NavigationDrawerAdapter(TITLES, ICONS, NAME, EMAIL, PROFILE);
-
         mRecyclerView.setAdapter(mAdapter);
+
+        mRecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getActivity(), new RecyclerItemClickListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                drawerListener.onDrawerItemSelected(view, position);
+                mDrawerLayout.closeDrawer(containerView);
+            }
+        }));
+
         return v;
-    }
+/*
+        return inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
+  */  }
 
 
-      public void setUp(DrawerLayout drawerLaout, Toolbar toolbar) {
+      public void setUp(DrawerLayout drawerLaout, Toolbar toolbar, int fragmemtId) {
           this.mDrawerLayout = drawerLaout;
           this.mToolbar = toolbar;
-
+          this.containerView = getActivity().findViewById(fragmemtId);
           mDrawerToggle = new ActionBarDrawerToggle(getActivity(), drawerLaout, toolbar, R.string.drawer_open, R.string.drawer_close){
 
               @Override
@@ -89,4 +103,13 @@ public class NavigationDrawerFragment extends Fragment {
               }
           });
       }
+
+      public void setDrawerListener(FragmentDrawerListener jDrawerListener){
+          this.drawerListener = jDrawerListener;
+      }
+
+      public interface FragmentDrawerListener{
+          public void onDrawerItemSelected(View view, int position);
+      }
+
 }

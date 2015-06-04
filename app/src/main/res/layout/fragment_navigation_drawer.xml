@@ -9,7 +9,7 @@
         android:layout_width="320dp"
         android:layout_height="match_parent"
         android:layout_gravity="left"
-        android:background="@color/colorPrimary"
-        android:scrollbars="vertical" />
+        android:background="@color/background"
+        android:scrollbars="vertical"/>
 
 </FrameLayout>
