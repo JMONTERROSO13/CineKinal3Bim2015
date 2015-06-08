@@ -68,11 +68,10 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
         SQLiteDatabase db = userSQLite.getWritableDatabase();
 
         if(db != null){
-             for (int i = 0; i < 1; i++ ){
+            /* for (int i = 0; i < 1; i++ ){
                 db.execSQL("INSERT INTO Movies VALUES (null, 'Pelicula "+ i +"' , 'Descripcion "+ i +"')");
             }
             db.close();
-            /*
             INSERT USER INTO USERS
             ContentValues newUser = new ContentValues();
             newUser.put("idUser", "10");
@@ -94,7 +93,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
                 2 --- String[] arg = new String[]{"admin","jmonterroso"};
                 db.delete("Users", "nombre=? OR nombre=?", arg);
 
-            db.close();*/
+            db.close();
 
             Cursor c = db.rawQuery("SELECT * FROM Users", null);
             if(c.moveToFirst()){
@@ -106,9 +105,9 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
             Cursor cm = db.rawQuery("SELECT * FROM Movies", null);
             if(cm.moveToFirst()){
                 do{
-                    movieTxt.append("Name Movie: "+ cm.getString(1) + " Description: " + cm.getString(2) + " \n" );
-                }while (c.moveToNext());
-            }
+                    movieTxt.append(" 1: "+ cm.getString(1) + " 1: " + cm.getString(2) + " \n" );
+                }while (cm.moveToNext());
+            }*/
         }
     }
 

@@ -2,6 +2,8 @@ package gt.edu.kinal.jmonterroso.movies;
 
 import android.content.ClipData;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -13,6 +15,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import gt.edu.kinal.jmonterroso.movies.helpers.UserSQLite;
+
 
 public class LoginActivity extends ActionBarActivity {
 
@@ -21,6 +25,14 @@ public class LoginActivity extends ActionBarActivity {
     private Button btnRegis;
     private EditText userName;
     private EditText pass_text;
+
+    private String UserName;
+    private String Password;
+    private SQLiteDatabase db;
+    private UserSQLite userDB;
+
+    String user_name;
+    String pass_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,23 +45,15 @@ public class LoginActivity extends ActionBarActivity {
         userName = (EditText)findViewById(R.id.userText);
         pass_text = (EditText)findViewById(R.id.passText);
 
+        user_name = ((EditText)findViewById(R.id.userText)).getText().toString();
+        pass_name = ((EditText)findViewById(R.id.passText)).getText().toString();
+
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String user_name = ((EditText)findViewById(R.id.userText)).getText().toString();
-                String pass_name = ((EditText)findViewById(R.id.passText)).getText().toString();
-                if(user_name.equals("Admin") && pass_name.equals("Admin")){
-                    Bundle b = new Bundle();
-                    b.putString("userName", userName.getText().toString());
-                    b.putString("password", pass_text.getText().toString());
-                    Intent intentLogin = new Intent(LoginActivity.this, MainActivity.class);
-                    intentLogin.putExtras(b);
-                    startActivity(intentLogin);
-                }
-                else {
-                    Toast.makeText( getApplicationContext() , "Error al iniciar Sesion", Toast.LENGTH_SHORT).show();
-                }
+
+                login();
             }
         });
 
@@ -66,6 +70,33 @@ public class LoginActivity extends ActionBarActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
     }
 
+    public void login(){
+
+        userDB = new UserSQLite(this, "DBCine",null, 1);
+        db = userDB.getWritableDatabase();
+        Cursor c = db.rawQuery("Select password from Users Where userName='"+user_name+"'",null);
+        int valida = 0;
+        if (c.moveToFirst()){
+            do {
+                valida++;
+                Password = c.getString(0);
+            }while(c.moveToNext());
+        }
+        if (valida > 0){
+            if (Password.equals(pass_name)){
+                Bundle b = new Bundle();
+                b.putString("userName", userName.getText().toString());
+                b.putString("password", pass_text.getText().toString());
+                Intent intentLogin = new Intent(LoginActivity.this, MainActivity.class);
+                intentLogin.putExtras(b);
+                startActivity(intentLogin);
+            }else{
+                Toast.makeText(LoginActivity.this, "Password incorect",Toast.LENGTH_LONG).show();
+            }
+        }else{
+            Toast.makeText(LoginActivity.this, "usuario no registrado",Toast.LENGTH_LONG).show();
+        }
+    }
 
 
     @Override
