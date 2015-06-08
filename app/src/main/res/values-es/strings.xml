@@ -21,7 +21,13 @@
     <string name="viewDetails">Ver Detalle</string>
     <string name="addFav">Agregar a Favoritos</string>
     <string name="peli">Peliculas</string>
-    <string name="favorites">Favorites</string>
-    <string name="hours">Hour</string>
-    <string name="settings">Settings</string>
+    <string name="favorites">Favoritos</string>
+    <string name="hours">Horarios</string>
+    <string name="settings">Ajustes</string>
+    <string name="notifications">Notificaciones</string>
+    <string name="notification_summary">Permitir que la aplicacion envie notificaciones</string>
+    <string name="countries">Paises</string>
+    <string name="countries_summary">Selecciona tu pais</string>
+    <string name="logout">Cerrar Sesion</string>
+
 </resources>

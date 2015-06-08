@@ -29,7 +29,12 @@
     <string name="favorites">Favorites</string>
     <string name="hours">Hour</string>
     <string name="settings">Settings</string>
-    <string name="title_activity_splash">SplashActivity</string>
-
+    <string name="title_activity_splash">Cine</string>
+    <string name="notifications">Notifications</string>
+    <string name="notification_summary">Allow the app to send you notifications</string>
+    <string name="countries">Countries</string>
+    <string name="countries_summary">Select your country</string>
+    <string name="title_activity_setting">SettingActivity</string>
+    <string name="logout">Logout</string>
 
 </resources>

@@ -24,7 +24,6 @@ public class TitularActivity extends ActionBarActivity {
         // Toolbar implementation
         mToolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Resources res = getResources();

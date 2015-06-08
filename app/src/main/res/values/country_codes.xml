@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="countriesArray">
+        <item>Spain</item>
+        <item>Germany</item>
+        <item>EEUU</item>
+    </string-array>
+    <string-array name="countriesCodesArray">
+        <item>ESP</item>
+        <item>GER</item>
+        <item>ENG</item>
+    </string-array>
+</resources>

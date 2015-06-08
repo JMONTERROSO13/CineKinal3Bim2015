@@ -3,6 +3,8 @@ package gt.edu.kinal.jmonterroso.movies;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.ContextMenu;
@@ -17,8 +19,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.zip.Inflater;
 
+import gt.edu.kinal.jmonterroso.movies.helpers.UserSQLite;
 import gt.edu.kinal.jmonterroso.movies.models.Titular;
 
 
@@ -29,6 +33,9 @@ public class MoviesFragment extends Fragment {
 
 
     private ListView listMovies;
+    private TextView movieDB;
+    ArrayList<Titular> listaPelicula = new ArrayList<Titular>();
+
 
     private Titular[] datosTitular = new Titular[]{
             new Titular("El Castillo Vagabundo", "Esta es una descripcion de un titular que esta siendo llamado desde el mainactivity, Titular 1"),
@@ -53,6 +60,7 @@ public class MoviesFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_movies, container, false);
         listMovies = (ListView)view.findViewById(R.id.listMovies);
+        movieDB =  (TextView)view.findViewById(R.id.txtMoviesDB);
         AdaptadorTitulares adaptadorTitulares = new AdaptadorTitulares(getActivity(), datosTitular);
         listMovies.setAdapter(adaptadorTitulares);
 
