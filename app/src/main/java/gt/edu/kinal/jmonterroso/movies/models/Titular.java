@@ -16,8 +16,11 @@ public class Titular {
         return descriptionMovie;
     }
 
-    public Titular(String nameMovie, String descriptionMovie) {
+    public void setNameMovie(String nameMovie) {
         this.nameMovie = nameMovie;
+    }
+
+    public void setDescriptionMovie(String descriptionMovie) {
         this.descriptionMovie = descriptionMovie;
     }
 }

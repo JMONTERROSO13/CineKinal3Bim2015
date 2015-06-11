@@ -63,52 +63,6 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
         drawerFragment.setUp((DrawerLayout)findViewById(R.id.drawer_layout), myToolBar, R.id.navigation_drawer_fragmnet);
         drawerFragment.setDrawerListener(this);
 
-
-        UserSQLite userSQLite = new UserSQLite(this, "DBCine",null, 1);
-        SQLiteDatabase db = userSQLite.getWritableDatabase();
-
-        if(db != null){
-            /* for (int i = 0; i < 1; i++ ){
-                db.execSQL("INSERT INTO Movies VALUES (null, 'Pelicula "+ i +"' , 'Descripcion "+ i +"')");
-            }
-            db.close();
-            INSERT USER INTO USERS
-            ContentValues newUser = new ContentValues();
-            newUser.put("idUser", "10");
-            newUser.put("userName", "admin");
-            newUser.put("email", "admin@jmonterroso.org");
-            newUser.put("password", "admin");
-            db.insert("Users ",null,newUser);
-
-            //MODIFICAR USERS
-
-            ContentValues updateUser = new ContentValues();
-            updateUser.put("nombre", "Admin");
-
-            db.update("Users",updateUser, "id=1",null);
-
-            //ELIMINAR USERS
-
-                1 ---db.delete("Users", "id=1", null);
-                2 --- String[] arg = new String[]{"admin","jmonterroso"};
-                db.delete("Users", "nombre=? OR nombre=?", arg);
-
-            db.close();
-
-            Cursor c = db.rawQuery("SELECT * FROM Users", null);
-            if(c.moveToFirst()){
-                do{
-                    userTxt.append("Id user: "+ c.getInt(0) + " Name User: " + c.getString(1) + " \n" );
-                }while (c.moveToNext());
-            }
-
-            Cursor cm = db.rawQuery("SELECT * FROM Movies", null);
-            if(cm.moveToFirst()){
-                do{
-                    movieTxt.append(" 1: "+ cm.getString(1) + " 1: " + cm.getString(2) + " \n" );
-                }while (cm.moveToNext());
-            }*/
-        }
     }
 
     @Override
@@ -129,7 +83,11 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
             startActivity(intent);
             return true;
         }
-
+        if (id == R.id.action_profile) {
+            Intent intent = new Intent(MainActivity.this, ProfileActivity.class );
+            startActivity(intent);
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 

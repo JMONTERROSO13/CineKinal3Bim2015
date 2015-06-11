@@ -29,5 +29,7 @@
     <string name="countries">Paises</string>
     <string name="countries_summary">Selecciona tu pais</string>
     <string name="logout">Cerrar Sesion</string>
+    <string name="profile">Perfil</string>
+    <string name="password2">Repita la Contraseña</string>
 
 </resources>

@@ -34,23 +34,13 @@ public class MoviesFragment extends Fragment {
 
     private ListView listMovies;
     private TextView movieDB;
+    private int idUserFavs;
+    private UserSQLite sqlite;
+    private SQLiteDatabase db;
     ArrayList<Titular> listaPelicula = new ArrayList<Titular>();
 
 
-    private Titular[] datosTitular = new Titular[]{
-            new Titular("El Castillo Vagabundo", "Esta es una descripcion de un titular que esta siendo llamado desde el mainactivity, Titular 1"),
-            new Titular("Carrie", "Esta es una descripcion de un titular que esta siendo llamado desde el mainactivity, Titular 2"),
-            new Titular("Beautiful Creatures", "Esta es una descripcion de un titular que esta siendo llamado desde el mainactivity, Titular 3"),
-            new Titular("Drgaon Ball Z: La resuccion de Freezer",  "Esta es una descripcion de un titular que esta siendo llamado desde el mainactivity, Titular 4"),
-            new Titular("Send to Chihiro", "Esta es una descripcion de un titular que esta siendo llamado desde el mainactivity, Titular 5"),
-            new Titular("Pokemon 2000", "Esta es una descripcion de un titular que esta siendo llamado desde el mainactivity, Titular 6"),
-            new Titular("Big Hero", "Esta es una descripcion de un titular que esta siendo llamado desde el mainactivity, Titular 7"),
-            new Titular("A Single Shot", "Esta es una descripcion de un titular que esta siendo llamado desde el mainactivity, Titular 8"),
-            new Titular("The perks of being a wallflower", "Esta es una descripcion de un titular que esta siendo llamado desde el mainactivity, Titular 9"),
-            new Titular("The Giver", "Esta es una descripcion de un titular que esta siendo llamado desde el mainactivity, Titular 10")
-    };
-
-    public MoviesFragment() {
+     public MoviesFragment() {
         // Required empty public constructor
     }
 
@@ -61,9 +51,7 @@ public class MoviesFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_movies, container, false);
         listMovies = (ListView)view.findViewById(R.id.listMovies);
         movieDB =  (TextView)view.findViewById(R.id.txtMoviesDB);
-        AdaptadorTitulares adaptadorTitulares = new AdaptadorTitulares(getActivity(), datosTitular);
-        listMovies.setAdapter(adaptadorTitulares);
-
+        listaAdapter();
         listMovies.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -83,9 +71,35 @@ public class MoviesFragment extends Fragment {
     }
 
 
+    public void listaAdapter() {
+        listaPelicula.clear();
+
+        sqlite = new UserSQLite(getActivity().getBaseContext());
+        db = sqlite.getReadableDatabase();
+
+        String Sql = "SELECT * FROM Movies";
+
+        Cursor cc = db.rawQuery(Sql, null);
+        Titular obj;
+
+        if (cc.moveToFirst()) {
+            do {
+
+                obj = new Titular();
+                obj.setNameMovie(cc.getString(1));
+                obj.setDescriptionMovie(cc.getString(2));
+                listaPelicula.add(obj);
+
+            } while (cc.moveToNext());
+        }
+        AdaptadorTitulares adapter = new AdaptadorTitulares(getActivity(),listaPelicula);
+        listMovies.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+    }
+
 
     class AdaptadorTitulares extends ArrayAdapter<Titular> {
-        public AdaptadorTitulares(Context context, Titular[] datos){
+        public AdaptadorTitulares(Context context,  ArrayList<Titular> datos){
             super(context, R.layout.listitem_movie, datos);
         }
 
@@ -96,8 +110,8 @@ public class MoviesFragment extends Fragment {
             TextView tvPelicula = (TextView)item.findViewById(R.id.txtName);
             TextView tvDescrption = (TextView)item.findViewById(R.id.txtDescription);
 
-            String tituloPelicula = datosTitular[position].getNameMovie();
-            String descriptionMovie = datosTitular[position].getDescriptionMovie();
+            String tituloPelicula = listaPelicula.get(position).getNameMovie();
+            String descriptionMovie = listaPelicula.get(position).getDescriptionMovie();
 
             tvPelicula.setText(tituloPelicula);
             tvDescrption.setText(descriptionMovie);
@@ -126,6 +140,8 @@ public class MoviesFragment extends Fragment {
 
         switch (item.getItemId()){
             case R.id.addFav:
+                idUserFavs = 1;
+
                 Toast.makeText(getActivity().getApplicationContext(), "Agregado a Favoritos", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.viewDetails:

@@ -32,7 +32,7 @@
         android:layout_width="400dp"
         android:drawableLeft="@drawable/ic_user_name"
         android:textSize="16sp"
-        android:layout_height="wrap_content"
+        android:layout_height="20dp"
         android:textColor="@color/textColorPrimary"
         android:layout_below="@+id/LayoutToolBar"
         android:layout_alignParentRight="true"
@@ -59,7 +59,7 @@
         android:textSize="16sp"
         android:drawableLeft="@drawable/ic_pass_user"
         android:layout_width="400dp"
-        android:layout_height="wrap_content"
+        android:layout_height="20dp"
         android:textColor="@color/textColorPrimary"
         android:password="true"
         android:layout_alignTop="@+id/pass"
@@ -67,9 +67,9 @@
         android:layout_alignParentEnd="true" />
 
     <TextView
-        android:id="@+id/email"
+        android:id="@+id/pass2"
         android:layout_centerHorizontal="true"
-        android:text="@string/email"
+        android:text="@string/password2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/passText"
@@ -83,23 +83,23 @@
         android:textStyle="italic"/>
 
     <EditText
-        android:id="@+id/emailText"
+        android:id="@+id/passText2"
         android:layout_width="400dp"
-        android:drawableLeft="@drawable/ic_email"
+        android:drawableLeft="@drawable/ic_pass_user"
         android:textSize="16sp"
-        android:layout_height="wrap_content"
+        android:layout_height="20dp"
         android:textColor="@color/textColorPrimary"
-        android:layout_alignTop="@+id/email"
+        android:layout_alignTop="@+id/pass2"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
     <TextView
-        android:id="@+id/phone"
+        android:id="@+id/email"
         android:layout_centerHorizontal="true"
-        android:text="@string/phone"
+        android:text="@string/email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/emailText"
+        android:layout_below="@+id/passText2"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:textColor="@color/textColorPrimary"
@@ -110,14 +110,14 @@
         android:textStyle="italic"/>
 
     <EditText
-        android:id="@+id/phoneText"
+        android:id="@+id/emailText"
         android:textSize="16sp"
-        android:drawableLeft="@drawable/ic_action_name"
+        android:drawableLeft="@drawable/ic_email"
         android:layout_width="400dp"
-        android:layout_height="wrap_content"
+        android:layout_height="20dp"
         android:textColor="@color/textColorPrimary"
         android:password="true"
-        android:layout_alignTop="@+id/phone"
+        android:layout_alignTop="@+id/email"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 

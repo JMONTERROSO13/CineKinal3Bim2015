@@ -36,5 +36,8 @@
     <string name="countries_summary">Select your country</string>
     <string name="title_activity_setting">SettingActivity</string>
     <string name="logout">Logout</string>
+    <string name="profile">Profile</string>
+    <string name="title_activity_profile">ProfileActivity</string>
+    <string name="password2">Repeat Password</string>
 
 </resources>
