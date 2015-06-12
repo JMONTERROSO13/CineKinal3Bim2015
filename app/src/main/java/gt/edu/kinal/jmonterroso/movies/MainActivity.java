@@ -20,19 +20,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.sql.SQLData;
-
-import gt.edu.kinal.jmonterroso.movies.HandlerUsers;
-import gt.edu.kinal.jmonterroso.movies.HandlerMovies;
 import gt.edu.kinal.jmonterroso.movies.helpers.UserSQLite;
 
 public class MainActivity extends ActionBarActivity implements NavigationDrawerFragment.FragmentDrawerListener {
 
-    // HandlerMovies mHandler =  new HandlerMovies().getInstance();
     private Toolbar myToolBar;
     private TextView labelWelcome;
-    private TextView userTxt;
-    private TextView movieTxt;
+    private static String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,14 +36,12 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
         Bundle userAccount = getIntent().getExtras();
 
         labelWelcome = (TextView)findViewById(R.id.welcome);
-        userTxt = (TextView)findViewById(R.id.txtDB);
-        movieTxt = (TextView)findViewById(R.id.txtMV);
         myToolBar = (Toolbar)findViewById(R.id.toolbar);
 
         setSupportActionBar(myToolBar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        String name = userAccount.getString("userName");
+        name = userAccount.getString("userName");
 
         labelWelcome.setText(labelWelcome.getText()+ " " + name);
 

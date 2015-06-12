@@ -8,14 +8,5 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"></ListView>
-    <TextView
-        android:id="@+id/txtMoviesDB"
-        android:text="moviesDB"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/textColorPrimary"
-        android:textSize="20sp"
-        android:textStyle="italic|bold"
-        android:layout_below="@+id/listMovies"
-        android:layout_centerHorizontal="true" />
+
 </FrameLayout>

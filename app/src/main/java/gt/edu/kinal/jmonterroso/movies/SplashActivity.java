@@ -14,9 +14,6 @@ import java.util.logging.LogRecord;
 public class SplashActivity extends ActionBarActivity {
 
     private final int SPLASH_DISPLAY_LENGTH = 2000;
-    private static final String PREFERENCES = "UserLog";
-    private static final String USERNAME = "USER";
-    private static final String REMEMBERS= "ISREMEMBERED";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,16 +23,15 @@ public class SplashActivity extends ActionBarActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intentLog;
-                SharedPreferences pref = getSharedPreferences(SplashActivity.PREFERENCES, Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = pref.edit();
-                
-                Boolean isRemembered = pref.getBoolean("IsRemembered", false);
-                if(isRemembered){
-                    intentLog = new Intent(SplashActivity.this, MainActivity.class);
-                } else {
+
+              /*  SharedPreferences pref = getSharedPreferences(SplashActivity.PREFERENCES, Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = pref
+                Boolean isRemembered = pref.getBoolean("IsRemembered", false);*/
+               // if(isRemembered){
+                Intent intentLog = new Intent(SplashActivity.this, LoginActivity.class);
+               /* } else {
                     intentLog = new Intent(SplashActivity.this, LoginActivity.class);
-                }
+                }*/
                 SplashActivity.this.startActivity(intentLog);
                 SplashActivity.this.finish();
             }

@@ -140,8 +140,6 @@ public class MoviesFragment extends Fragment {
 
         switch (item.getItemId()){
             case R.id.addFav:
-                idUserFavs = 1;
-
                 Toast.makeText(getActivity().getApplicationContext(), "Agregado a Favoritos", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.viewDetails:

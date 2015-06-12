@@ -70,10 +70,6 @@ public class LoginActivity extends ActionBarActivity {
                                 Bundle b = new Bundle();
                                 b.putString("userName", userName.getText().toString());
                                 b.putString("password", pass_text.getText().toString());
-                                SharedPreferences preferences = getSharedPreferences("UserLog", Context.MODE_PRIVATE);
-                                SharedPreferences.Editor editor = preferences.edit();
-                                editor.putBoolean("IsRemembered",cRemember.isChecked());
-                                editor.commit();
                                 Intent intentLogin = new Intent(LoginActivity.this, MainActivity.class);
                                 intentLogin.putExtras(b);
                                 startActivity(intentLogin);

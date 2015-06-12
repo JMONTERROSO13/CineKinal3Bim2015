@@ -41,26 +41,7 @@
                 android:textStyle="italic|bold"
                 android:layout_below="@+id/LayoutToolBar"
                 android:layout_centerHorizontal="true" />
-            <TextView
-                android:id="@+id/txtDB"
-                android:text="users"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/textColorPrimary"
-                android:textSize="20sp"
-                android:textStyle="italic|bold"
-                android:layout_below="@+id/welcome"
-                android:layout_centerHorizontal="true" />
-            <TextView
-                android:id="@+id/txtMV"
-                android:text="users"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/textColorPrimary"
-                android:textSize="20sp"
-                android:textStyle="italic|bold"
-                android:layout_below="@+id/txtDB"
-                android:layout_centerHorizontal="true" />
+
         </RelativeLayout>
 
     </RelativeLayout>
