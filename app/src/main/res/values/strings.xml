@@ -39,5 +39,6 @@
     <string name="profile">Profile</string>
     <string name="title_activity_profile">ProfileActivity</string>
     <string name="password2">Repeat Password</string>
+    <string name="rem">Remember me</string>
 
 </resources>

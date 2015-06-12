@@ -55,7 +55,8 @@
         android:drawableLeft="@drawable/ic_user_name"
         android:textSize="20sp"
         android:layout_height="wrap_content"
-        android:textColor="@color/textColorPrimary"/>
+        android:textColor="@color/textColorPrimary"
+        android:inputType="text" />
 
     <TextView
         android:id="@+id/pass"
@@ -83,7 +84,8 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:textColor="@color/textColorPrimary"
-        android:password="true" />
+        android:password="true"
+        android:inputType="text|textVisiblePassword" />
 
     <Button
         android:layout_width="wrap_content"
@@ -111,5 +113,17 @@
         android:layout_marginTop="5dp"
         android:layout_marginBottom="30dp"
         />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/rem"
+        android:id="@+id/remember"
+        android:layout_below="@+id/passText"
+        android:layout_toRightOf="@+id/pass"
+        android:layout_toEndOf="@+id/pass"
+        android:checked="false"
+        android:textColor="@color/textColorPrimary" />
+
 
 </RelativeLayout>

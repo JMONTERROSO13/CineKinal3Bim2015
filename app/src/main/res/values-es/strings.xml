@@ -31,5 +31,6 @@
     <string name="logout">Cerrar Sesion</string>
     <string name="profile">Perfil</string>
     <string name="password2">Repita la Contraseña</string>
+    <string name="rem">Recuerdame</string>
 
 </resources>

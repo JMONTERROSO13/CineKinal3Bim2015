@@ -93,7 +93,7 @@ public class Register extends ActionBarActivity {
 
                                             Intent intent =  new Intent(Register.this, LoginActivity.class);
                                             startActivity(intent);
-                                            finish();
+                                            Register.this.finish();
                                         } catch (Exception e) {
                                             db.close();
                                             Toast toast = Toast.makeText(getApplicationContext(),"3)" + e.toString(), Toast.LENGTH_SHORT);
