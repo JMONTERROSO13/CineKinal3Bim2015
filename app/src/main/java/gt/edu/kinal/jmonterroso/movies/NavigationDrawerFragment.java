@@ -32,8 +32,7 @@ public class NavigationDrawerFragment extends Fragment {
       private View containerView;
 
     private int ICONS[] = {R.drawable.ic_setting,R.drawable.ic_movie, R.drawable.ic_favorite, R.drawable.ic_events };
-   // private String TITLES[] = {String.valueOf(R.string.settings), String.valueOf(R.string.peli),String.valueOf(R.string.favorites),String.valueOf(R.string.hours)};
-    private String TITLES[] = {"Ajustes","Peliculas","Favoritas","Horarios"};
+    private String TITLES[] = {"Ajustes", "Peliculas", "Favoritos", "Eventos"};
     private String NAME = "Jorge Monterroso";
     private String EMAIL = "jmonterroso-2013175@kinal.edu.gt";
     private int PROFILE = R.mipmap.ic_launcher;
@@ -65,9 +64,7 @@ public class NavigationDrawerFragment extends Fragment {
         }));
 
         return v;
-/*
-        return inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
-  */  }
+    }
 
 
       public void setUp(DrawerLayout drawerLaout, Toolbar toolbar, int fragmemtId) {

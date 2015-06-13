@@ -72,6 +72,7 @@ public class TitularActivity extends ActionBarActivity {
 
         if (id == R.id.home){
             NavUtils.navigateUpFromSameTask(this);
+            finish();
         }
 
         return super.onOptionsItemSelected(item);

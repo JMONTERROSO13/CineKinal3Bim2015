@@ -28,7 +28,7 @@ public class LoginActivity extends ActionBarActivity {
     private EditText userName;
     private EditText pass_text;
     private CheckBox cRemember;
-
+    private String nameuser;
     private String Password;
     private SQLiteDatabase db;
     private UserSQLite userDB;
@@ -39,13 +39,14 @@ public class LoginActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+
         myToolBar = (Toolbar)findViewById(R.id.toolbar);
         btnLogin = (Button)findViewById(R.id.logins);
         btnRegis = (Button)findViewById(R.id.registers);
         userName = (EditText)findViewById(R.id.userText);
         pass_text = (EditText)findViewById(R.id.passText);
         cRemember = (CheckBox)findViewById(R.id.remember);
-
+        nameuser = userName.getText().toString();
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -67,13 +68,16 @@ public class LoginActivity extends ActionBarActivity {
                     if (pass_text.getText().length() > 0) {
                         if (valida > 0) {
                             if (Password.equals(pass_text.getText().toString())) {
-                                Bundle b = new Bundle();
-                                b.putString("userName", userName.getText().toString());
-                                b.putString("password", pass_text.getText().toString());
+
+                                SharedPreferences preferences = getSharedPreferences( getString(R.string.sharedClass), Context.MODE_PRIVATE);
+                                SharedPreferences.Editor editor = preferences.edit();
+                                editor.putString(getString(R.string.userRemembered), nameuser);
+                                editor.putBoolean(getString(R.string.isRemembered), cRemember.isChecked());
+                                editor.apply();
                                 Intent intentLogin = new Intent(LoginActivity.this, MainActivity.class);
-                                intentLogin.putExtras(b);
                                 startActivity(intentLogin);
                                 LoginActivity.this.finish();
+
                             } else {
                                 Toast.makeText(LoginActivity.this, "Contraseña Incorrecta", Toast.LENGTH_LONG).show();
                             }

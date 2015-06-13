@@ -1,10 +1,8 @@
 package gt.edu.kinal.jmonterroso.movies;
 
-import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.FragmentManager;
@@ -18,9 +16,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import gt.edu.kinal.jmonterroso.movies.helpers.UserSQLite;
 
 public class MainActivity extends ActionBarActivity implements NavigationDrawerFragment.FragmentDrawerListener {
 
@@ -32,22 +28,19 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        Bundle userAccount = getIntent().getExtras();
-
         labelWelcome = (TextView)findViewById(R.id.welcome);
         myToolBar = (Toolbar)findViewById(R.id.toolbar);
 
         setSupportActionBar(myToolBar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        name = userAccount.getString("userName");
+
+
+        //Shared
+        SharedPreferences pref = MainActivity.this.getSharedPreferences(getString(R.string.sharedClass), Context.MODE_PRIVATE);
+        name = pref.getString(getString(R.string.userRemembered), "");
 
         labelWelcome.setText(labelWelcome.getText()+ " " + name);
-
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
-        boolean notificationEnable = preferences.getBoolean("is_notification_enable", false);
-        Toast.makeText(this, getString(R.string.notifications)+ " " + notificationEnable, Toast.LENGTH_SHORT).show();
 
         //Fragment
         NavigationDrawerFragment drawerFragment = (NavigationDrawerFragment)getSupportFragmentManager().findFragmentById(R.id.navigation_drawer_fragmnet);
@@ -59,7 +52,6 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
@@ -80,7 +72,16 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
             startActivity(intent);
             return true;
         }
-        return super.onOptionsItemSelected(item);
+        if (id == R.id.log_out) {
+            SharedPreferences pref = MainActivity.this.getSharedPreferences(getString(R.string.sharedClass), Context.MODE_PRIVATE);
+            pref.edit().clear().apply();
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class );
+            startActivity(intent);
+            finish();
+            return true;
+        }
+
+            return super.onOptionsItemSelected(item);
     }
 
     @Override

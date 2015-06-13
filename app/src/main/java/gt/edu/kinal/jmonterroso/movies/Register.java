@@ -83,7 +83,6 @@ public class Register extends ActionBarActivity {
                                         db = sqlite.getWritableDatabase();
                                         try{
 
-                                            users.put("idUser", 3);
                                             users.put("userName", userName.getText().toString());
                                             users.put("password", password.getText().toString());
                                             users.put("email", email.getText().toString());

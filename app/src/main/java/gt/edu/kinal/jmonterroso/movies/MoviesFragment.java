@@ -1,6 +1,7 @@
 package gt.edu.kinal.jmonterroso.movies;
 
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -20,7 +21,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.zip.Inflater;
 
 import gt.edu.kinal.jmonterroso.movies.helpers.UserSQLite;
 import gt.edu.kinal.jmonterroso.movies.models.Titular;
@@ -33,8 +33,6 @@ public class MoviesFragment extends Fragment {
 
 
     private ListView listMovies;
-    private TextView movieDB;
-    private int idUserFavs;
     private UserSQLite sqlite;
     private SQLiteDatabase db;
     ArrayList<Titular> listaPelicula = new ArrayList<Titular>();
@@ -50,13 +48,12 @@ public class MoviesFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_movies, container, false);
         listMovies = (ListView)view.findViewById(R.id.listMovies);
-        movieDB =  (TextView)view.findViewById(R.id.txtMoviesDB);
         listaAdapter();
         listMovies.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intentTitular = new Intent(getActivity(), TitularActivity.class);
-                Titular titularSeleccionado = (Titular) parent.getItemAtPosition(position);
+                Titular titularSeleccionado = (Titular)parent.getItemAtPosition(position);
                 Bundle extras = new Bundle();
                 extras.putString("Titulo", titularSeleccionado.getNameMovie());
                 extras.putString("Descripcion", titularSeleccionado.getDescriptionMovie());
@@ -81,7 +78,7 @@ public class MoviesFragment extends Fragment {
 
         Cursor cc = db.rawQuery(Sql, null);
         Titular obj;
-
+        db.close();
         if (cc.moveToFirst()) {
             do {
 
@@ -140,9 +137,56 @@ public class MoviesFragment extends Fragment {
 
         switch (item.getItemId()){
             case R.id.addFav:
+/*
+                Titular peliFav = (Titular)listMovies.getAdapter().getItem(info.position);
+                sqlite = new UserSQLite(getActivity().getBaseContext());
+                db = sqlite.getReadableDatabase();
+
+                String Sql = "SELECT idMovie FROM Favorites WHERE idUser='"+peliFav.+"'";
+                Cursor cc = db.rawQuery(Sql, null);
+                int exists = 0;
+                if (cc.moveToFirst())
+                {
+                    do {
+                        exists++;
+                    } while (cc.moveToNext());
+                }
+                db.close();
+                if (exists <= 0 ){
+                    ContentValues users = new ContentValues();
+                    sqlite = new UserSQLite(getActivity().getBaseContext());
+                    db = sqlite.getWritableDatabase();
+                    try{
+
+                        users.put("userName", userName.getText().toString());
+                        users.put("password", password.getText().toString());
+                        users.put("email", email.getText().toString());
+
+                        db.insert("Users", null, users);
+                        db.close();
+
+
+                    } catch (Exception e) {
+                        db.close();
+                        Toast toast = Toast.makeText(getActivity().getApplicationContext(),"3)" + e.toString(), Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
+                }else
+                {
+                    Toast toast = Toast.makeText(getActivity().getApplicationContext(),"El nombre de usuario ya existe", Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+                */
                 Toast.makeText(getActivity().getApplicationContext(), "Agregado a Favoritos", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.viewDetails:
+                Intent intentTitular = new Intent(getActivity(), TitularActivity.class);
+                Titular peliSelect = (Titular)listMovies.getAdapter().getItem(info.position);
+                Bundle extras = new Bundle();
+                extras.putString("Titulo", peliSelect.getNameMovie());
+                extras.putString("Descripcion", peliSelect.getDescriptionMovie());
+                intentTitular.putExtras(extras);
+                startActivity(intentTitular);
                 Toast.makeText(getActivity().getApplicationContext(), "Accediendo al Detalle", Toast.LENGTH_SHORT).show();
                 return true;
             default:

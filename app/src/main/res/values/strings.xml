@@ -40,5 +40,8 @@
     <string name="title_activity_profile">ProfileActivity</string>
     <string name="password2">Repeat Password</string>
     <string name="rem">Remember me</string>
+    <string name="isRemembered">Remember</string>
+    <string name="userRemembered">UserRemember</string>
+    <string name="sharedClass">class</string>
 
 </resources>

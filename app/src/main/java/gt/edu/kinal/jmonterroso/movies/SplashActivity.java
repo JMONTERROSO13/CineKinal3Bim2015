@@ -23,15 +23,14 @@ public class SplashActivity extends ActionBarActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-
-              /*  SharedPreferences pref = getSharedPreferences(SplashActivity.PREFERENCES, Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = pref
-                Boolean isRemembered = pref.getBoolean("IsRemembered", false);*/
-               // if(isRemembered){
-                Intent intentLog = new Intent(SplashActivity.this, LoginActivity.class);
-               /* } else {
+                SharedPreferences pref = SplashActivity.this.getSharedPreferences(getString(R.string.sharedClass), Context.MODE_PRIVATE);
+                Boolean isRemembered = pref.getBoolean(getString(R.string.isRemembered), false);
+                Intent intentLog;
+                if(isRemembered){
+                    intentLog = new Intent(SplashActivity.this, MainActivity.class);
+                } else {
                     intentLog = new Intent(SplashActivity.this, LoginActivity.class);
-                }*/
+                }
                 SplashActivity.this.startActivity(intentLog);
                 SplashActivity.this.finish();
             }
