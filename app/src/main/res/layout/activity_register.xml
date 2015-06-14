@@ -148,9 +148,7 @@
         android:textSize="15sp"
         android:layout_marginBottom="25dp"
         android:textColor="@color/background"
-        android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/phone"
-        android:layout_toEndOf="@+id/phone" />
+        android:layout_alignParentBottom="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -162,8 +160,6 @@
         android:layout_marginLeft="100dp"
         android:layout_marginBottom="25dp"
         android:textColor="@color/textColorPrimary"
-        android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/phone"
-        android:layout_toEndOf="@+id/phone" />
+        android:layout_alignParentBottom="true" />
 
 </RelativeLayout>

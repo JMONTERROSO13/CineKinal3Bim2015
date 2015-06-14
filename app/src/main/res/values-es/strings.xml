@@ -32,5 +32,8 @@
     <string name="profile">Perfil</string>
     <string name="password2">Repita la Contraseña</string>
     <string name="rem">Recuerdame</string>
+    <string name="removeFav">Eliminar de Favoritos</string>
+    <string name="udpate">Actualizar Perfil</string>
+    <string name="goR">Regresar al Inicio</string>
 
 </resources>

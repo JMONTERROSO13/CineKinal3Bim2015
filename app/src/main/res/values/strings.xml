@@ -21,7 +21,6 @@
     <string name="viewDetails">View Detail</string>
     <string name="addFav">Add a Favorites</string>
 
-<!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
@@ -43,5 +42,8 @@
     <string name="isRemembered">Remember</string>
     <string name="userRemembered">UserRemember</string>
     <string name="sharedClass">class</string>
+    <string name="removeFav">Remove item from Favorites</string>
+    <string name="udpate">Update Profile</string>
+    <string name="goR">Return Main</string>
 
 </resources>

@@ -28,7 +28,6 @@ public class LoginActivity extends ActionBarActivity {
     private EditText userName;
     private EditText pass_text;
     private CheckBox cRemember;
-    private String nameuser;
     private String Password;
     private SQLiteDatabase db;
     private UserSQLite userDB;
@@ -46,7 +45,6 @@ public class LoginActivity extends ActionBarActivity {
         userName = (EditText)findViewById(R.id.userText);
         pass_text = (EditText)findViewById(R.id.passText);
         cRemember = (CheckBox)findViewById(R.id.remember);
-        nameuser = userName.getText().toString();
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -71,7 +69,8 @@ public class LoginActivity extends ActionBarActivity {
 
                                 SharedPreferences preferences = getSharedPreferences( getString(R.string.sharedClass), Context.MODE_PRIVATE);
                                 SharedPreferences.Editor editor = preferences.edit();
-                                editor.putString(getString(R.string.userRemembered), nameuser);
+                                editor.putString(getString(R.string.userRemembered), userName.getText().toString());
+                                Toast.makeText(getApplicationContext(), "Hola" + userName.getText().toString(), Toast.LENGTH_SHORT).show();
                                 editor.putBoolean(getString(R.string.isRemembered), cRemember.isChecked());
                                 editor.apply();
                                 Intent intentLogin = new Intent(LoginActivity.this, MainActivity.class);

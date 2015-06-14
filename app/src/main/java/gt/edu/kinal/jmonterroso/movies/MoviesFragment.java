@@ -4,6 +4,7 @@ package gt.edu.kinal.jmonterroso.movies;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -78,7 +79,6 @@ public class MoviesFragment extends Fragment {
 
         Cursor cc = db.rawQuery(Sql, null);
         Titular obj;
-        db.close();
         if (cc.moveToFirst()) {
             do {
 
@@ -89,6 +89,8 @@ public class MoviesFragment extends Fragment {
 
             } while (cc.moveToNext());
         }
+
+        db.close();
         AdaptadorTitulares adapter = new AdaptadorTitulares(getActivity(),listaPelicula);
         listMovies.setAdapter(adapter);
         adapter.notifyDataSetChanged();
@@ -137,32 +139,56 @@ public class MoviesFragment extends Fragment {
 
         switch (item.getItemId()){
             case R.id.addFav:
-/*
-                Titular peliFav = (Titular)listMovies.getAdapter().getItem(info.position);
+                SharedPreferences pref = getActivity().getSharedPreferences(getString(R.string.sharedClass), Context.MODE_PRIVATE);
+                String name = pref.getString(getString(R.string.userRemembered), "");
+
                 sqlite = new UserSQLite(getActivity().getBaseContext());
                 db = sqlite.getReadableDatabase();
-
-                String Sql = "SELECT idMovie FROM Favorites WHERE idUser='"+peliFav.+"'";
-                Cursor cc = db.rawQuery(Sql, null);
+                String Sql = "SELECT idUser FROM Users WHERE userName='"+name+"'";
+                Cursor cu = db.rawQuery(Sql, null);
+                int idUser = 0;
+                if (cu.moveToFirst())
+                {
+                    do {
+                        idUser = cu.getInt(0);
+                    } while (cu.moveToNext());
+                }
+                db.close();
+                sqlite = new UserSQLite(getActivity().getBaseContext());
+                db = sqlite.getReadableDatabase();
+                Titular peliFav = (Titular)listMovies.getAdapter().getItem(info.position);
+                Sql = "SELECT idMovie FROM Movies WHERE name='"+peliFav.getNameMovie()+"'";
+                Cursor cf = db.rawQuery(Sql, null);
+                int idMovie = 0;
+                if (cf.moveToFirst())
+                {
+                    do {
+                        idMovie = cf.getInt(0);
+                    } while (cf.moveToNext());
+                }
+                db.close();
+                sqlite = new UserSQLite(getActivity().getBaseContext());
+                db = sqlite.getReadableDatabase();
+                Sql = "SELECT * FROM Favorites WHERE idUser="+idUser+" AND idMovie="+ idMovie +";";
+                Cursor cm = db.rawQuery(Sql, null);
                 int exists = 0;
-                if (cc.moveToFirst())
+                if (cm.moveToFirst())
                 {
                     do {
                         exists++;
-                    } while (cc.moveToNext());
+                    } while (cm.moveToNext());
                 }
                 db.close();
                 if (exists <= 0 ){
-                    ContentValues users = new ContentValues();
+                    ContentValues favs = new ContentValues();
                     sqlite = new UserSQLite(getActivity().getBaseContext());
                     db = sqlite.getWritableDatabase();
                     try{
 
-                        users.put("userName", userName.getText().toString());
-                        users.put("password", password.getText().toString());
-                        users.put("email", email.getText().toString());
+                        favs.put("idMovie", idMovie);
+                        favs.put("idUser", idUser);
 
-                        db.insert("Users", null, users);
+                        db.insert("Favorites", null, favs);
                         db.close();
 
 
@@ -171,13 +197,13 @@ public class MoviesFragment extends Fragment {
                         Toast toast = Toast.makeText(getActivity().getApplicationContext(),"3)" + e.toString(), Toast.LENGTH_SHORT);
                         toast.show();
                     }
+
+                    Toast.makeText(getActivity().getApplicationContext(), "Agregado a Favoritos", Toast.LENGTH_SHORT).show();
                 }else
                 {
-                    Toast toast = Toast.makeText(getActivity().getApplicationContext(),"El nombre de usuario ya existe", Toast.LENGTH_SHORT);
+                    Toast toast = Toast.makeText(getActivity().getApplicationContext(),"La pelicula ya es un favorito de este usuario", Toast.LENGTH_SHORT);
                     toast.show();
                 }
-                */
-                Toast.makeText(getActivity().getApplicationContext(), "Agregado a Favoritos", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.viewDetails:
                 Intent intentTitular = new Intent(getActivity(), TitularActivity.class);

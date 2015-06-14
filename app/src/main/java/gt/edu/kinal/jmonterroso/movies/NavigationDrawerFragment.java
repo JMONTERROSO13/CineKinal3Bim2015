@@ -1,6 +1,10 @@
   package gt.edu.kinal.jmonterroso.movies;
 
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
@@ -14,6 +18,7 @@ import android.support.v7.widget.Toolbar;
 
 import gt.edu.kinal.jmonterroso.movies.adapter.NavigationDrawerAdapter;
 import gt.edu.kinal.jmonterroso.movies.helpers.RecyclerItemClickListener;
+import gt.edu.kinal.jmonterroso.movies.helpers.UserSQLite;
 
 
   /**
@@ -21,33 +26,53 @@ import gt.edu.kinal.jmonterroso.movies.helpers.RecyclerItemClickListener;
  */
 public class NavigationDrawerFragment extends Fragment {
 
-      private ActionBarDrawerToggle mDrawerToggle;
-      private DrawerLayout mDrawerLayout;
-      private Toolbar mToolbar;
-
-      private RecyclerView mRecyclerView;
-      private RecyclerView.Adapter mAdapter;
-      private RecyclerView.LayoutManager mLayoutManager;
-      private FragmentDrawerListener drawerListener;
-      private View containerView;
+    private ActionBarDrawerToggle mDrawerToggle;
+    private DrawerLayout mDrawerLayout;
+    private Toolbar mToolbar;
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
+    private FragmentDrawerListener drawerListener;
+    private View containerView;
 
     private int ICONS[] = {R.drawable.ic_setting,R.drawable.ic_movie, R.drawable.ic_favorite, R.drawable.ic_events };
     private String TITLES[] = {"Ajustes", "Peliculas", "Favoritos", "Eventos"};
-    private String NAME = "Jorge Monterroso";
-    private String EMAIL = "jmonterroso-2013175@kinal.edu.gt";
-    private int PROFILE = R.mipmap.ic_launcher;
+    private String NAME = null;
+    private String EMAIL = null;
+    private int PROFILE = R.drawable.ic_user_name;
 
+    private UserSQLite sqLite;
+    private SQLiteDatabase db;
 
     public NavigationDrawerFragment() {
 
     }
 
+    public String UserEmail(String users){
+        String email = null;
+        sqLite = new UserSQLite(getActivity().getBaseContext());
+        db = sqLite.getReadableDatabase();
+        String Sql = "SELECT email FROM Users WHERE userName='"+users+"'";
+        Cursor cu = db.rawQuery(Sql, null);
+        if (cu.moveToFirst())
+        {
+            do {
+                email = cu.getString(0);
+            } while (cu.moveToNext());
+        }
+        db.close();
+
+        return email;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
-
+        SharedPreferences prefs = getActivity().getSharedPreferences(getString(R.string.sharedClass), Context.MODE_PRIVATE);
+        String names = prefs.getString(getString(R.string.userRemembered), "");
+        NAME = names;
+        EMAIL = UserEmail(names);
         mRecyclerView = (RecyclerView) v.findViewById(R.id.RecyclerView);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(getActivity());

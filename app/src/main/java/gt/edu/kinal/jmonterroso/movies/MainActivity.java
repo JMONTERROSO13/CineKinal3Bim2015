@@ -22,7 +22,6 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 
     private Toolbar myToolBar;
     private TextView labelWelcome;
-    private static String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,9 +37,8 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 
         //Shared
         SharedPreferences pref = MainActivity.this.getSharedPreferences(getString(R.string.sharedClass), Context.MODE_PRIVATE);
-        name = pref.getString(getString(R.string.userRemembered), "");
 
-        labelWelcome.setText(labelWelcome.getText()+ " " + name);
+        labelWelcome.setText(labelWelcome.getText()+ " " + pref.getString(getString(R.string.userRemembered), "hola"));
 
         //Fragment
         NavigationDrawerFragment drawerFragment = (NavigationDrawerFragment)getSupportFragmentManager().findFragmentById(R.id.navigation_drawer_fragmnet);

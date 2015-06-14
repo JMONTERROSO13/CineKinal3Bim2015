@@ -127,12 +127,6 @@ public class Register extends ActionBarActivity {
             }
          });
 
-        UserSQLite userSQLite = new UserSQLite(this);
-        SQLiteDatabase db = userSQLite.getWritableDatabase();
-
-        if(db != null) {
-           
-        }
         setSupportActionBar(myToolBar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
     }

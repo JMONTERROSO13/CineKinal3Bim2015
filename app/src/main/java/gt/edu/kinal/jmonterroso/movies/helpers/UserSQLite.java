@@ -15,10 +15,6 @@ public class UserSQLite extends SQLiteOpenHelper{
     private String sqlUsers = "CREATE TABLE Users (idUser INTEGER PRIMARY KEY, userName TEXT, email TEXT, password TEXT)";
     private String sqlMovies = "CREATE TABLE Movies (idMovie INTEGER PRIMARY KEY, name TEXT, description TEXT)";
     private String sqlFavorites = "CREATE TABLE Favorites (idFav INTEGER PRIMARY KEY, idMovie INTEGER,idUser INTEGER ,FOREIGN KEY(idMovie) REFERENCES Movies(idMovie),FOREIGN KEY(idUSer) REFERENCES Users(idUser));";
-    /* private String innerFavs = "SELECT Users.userName, Movies.name, Movies.description FROM Favorites WHERE idUser= \n" +
-        "INNER JOIN Users  ON Favorites.idUser = Users.idUser\n" +
-        "INNER JOIN Movies  ON Favorites.idMovie = Movies.idMovie\n" +
-        "WHERE Favorites.idUser=?"; */
 
     public UserSQLite(Context context) {
         super(context, "DBCine",factory, 1);
